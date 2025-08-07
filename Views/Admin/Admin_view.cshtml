@@ -1,0 +1,53 @@
+﻿@model IEnumerable<PhotographyWebsite.Models.Employee>
+
+@{
+    ViewData["Title"] = "Admin_view";
+}
+<style>
+    body{
+       /*  background-image: url('/Image/Quotefancy-16703-3840x2160.jpg'); */
+        background-color: #D6EEEE;
+        background-repeat:no-repeat;
+        background-size:contain;
+        background-position:center;
+
+    }
+</style>
+<body>
+
+
+<h1> <center>ADMIN VIEW DETAILS</center></h1>
+
+
+<div id="img1">
+   
+    <hr />
+        <table class="table table-bordered" style="border: 1px solid black;border-collapse: collapse;">
+        <thead>
+        <tr>
+           <th> Customer Name</th>
+           <th> Customer Email</th>
+           <th>Password</th>
+
+        </tr>
+        </thead>
+        <tbody>
+             @foreach(var item in Model)
+            {
+      <tr>
+           
+                <td>@Html.DisplayFor(model => item.Name)</td>
+                <td>@Html.DisplayFor(model => item.Email)</td>
+                <td>********</td>
+          
+        </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model? item.Id"></a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+</body>

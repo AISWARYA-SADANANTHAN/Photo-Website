@@ -1,0 +1,218 @@
+﻿@model PhotographyWebsite.Models.Order
+@{
+    ViewBag.Title = "Order_photo";
+}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <style>
+        body {
+            background-image: url('../Image/4.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            width: 400px;
+            margin-top: 100px;
+            margin-left: 170px;
+            border: 2px solid red;
+        }
+
+        .first {
+            margin-left: 5px;
+        }
+
+        .second {
+            margin-left: 30px;
+        }
+
+        .email {
+            margin-right: 15px;
+        }
+
+        .align {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            margin-left: 140px;
+        }
+
+        .dropdown {
+            width: 195px;
+        }
+
+        .start_date {
+            width: 195px;
+        }
+
+        .end_date {
+            width: 195px;
+        }
+
+        .model-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            .btnn{
+                width:150px;
+            }
+    </style>
+
+</head>
+<body>
+
+    
+    <form asp-action="ordereplace">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="main">
+    <div class="align">
+        <label for="name" id="second" class="control-label" style="color:white"><b>Customer Name:</b></label>
+                <input type="text" asp-for="Customer_name" placeholder="Enter your name" required class="input-spacing1  first" id="name">
+                <span asp-validation-for="Customer_name" class="text-danger"></span>
+        </div>
+
+        <div class="align">
+        <label for="email" id="email" style="color:white"><b>Email Id:</b></label>
+                <input type="text" placeholder="Enter email" asp-for="Email_id" required class="input-spacing1" id="email">
+        </div>
+
+        <div class="align">
+        <label for="photo" style="color:white;padding-right:10px;"><b> Photography:</b></label>
+                <select asp-for="type_photo" class="dropdown" required id="dropdown">
+                <option value="" disabled selected>Select Photography</option>
+                <option value="Landscape">Landscape</option>
+                <option value="Macro">Macro </option>
+                <option value="Still Life">Still Life </option>
+                <option value="Food ">Food  </option>
+                <option value="Event ">Event   </option>
+                <option value="Travel  ">Travel    </option>
+            </select>
+
+        </div>
+     
+        <div class="align">
+        <label for="email" style="color:white"><b>Booking Start Date:</b></label>
+                <input type="date" class="start_date" asp-for="book_date_st" id="start_date" required>
+        </div>
+
+        <div class="align">
+            <label for="date" style="color:white"><b>Booking End date:</b></label>
+                <input type="date" class="end_date" asp-for="date_end" id="end_date" required>
+        </div>
+        <br /><br />
+
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">close&times;</span>
+                    <p>Your Order Has been placed</p>
+                    <button id="confirmOrderButton" class="btn btn-warning btnn">Confirm Order</button>
+                    <button class="btn btn-secondary btnn" onclick="modal.style.display='none'">Cancel</button>
+                </div>
+            </div>
+
+        
+       
+
+
+    </div>
+    </form>
+    <button id="myButton" class="btn btn-success" onclick="showAlert()">Place Order</button>
+
+    <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myButton");
+        var span = document.getElementsByClassName("close")[0]; // Corrected here
+
+        // Show modal on button click after validation
+        btn.onclick = function (event) {
+            event.preventDefault(); // Prevent default form submission
+            if (validateFields()) {
+                modal.style.display = "block"; // Show modal if validation passes
+            }
+        }
+
+        // Close modal when the 'x' is clicked
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Function to set the minimum date to today
+        function setMinDate() {
+            const today = new Date();
+            const dd = String(today.getDate()).padStart(2, '0');
+            const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+            const yyyy = today.getFullYear();
+
+            // Format the date as YYYY-MM-DD
+            const formattedDate = `${yyyy}-${mm}-${dd}`;
+
+            // Set the min attribute for both date inputs
+            document.getElementById('start_date').setAttribute('min', formattedDate);
+            document.getElementById('end_date').setAttribute('min', formattedDate);
+        }
+
+        // Call the function to set the minimum date on page load
+        window.onload = setMinDate;
+
+        // Add a submit function to the modal's button
+        document.getElementById("confirmOrderButton").onclick = function () {
+            document.getElementById("orderForm").submit(); // Submit the form
+        }
+
+        // Function to validate fields
+        function validateFields() {
+            var name = document.getElementsByName('Customer_name')[0].value.trim(); // Get the value and trim whitespace
+            var email = document.getElementsByName('Email_id')[0].value.trim(); // Get the value and trim whitespace
+            var dropdown = document.getElementsByName('type_photo')[0].value.trim();
+            var startdate = document.getElementById('start_date').value.trim();
+            var enddate = document.getElementById('end_date').value.trim();
+
+            // Check if any of the fields are empty
+            if (name === '' || email === '' || dropdown === '' || startdate === '' || enddate === '') {
+                alert('Please fill in all fields.'); // Show alert if any field is empty
+                return false; // Prevent further action
+            } else {
+                return true; // Indicate successful validation
+            }
+        }
+    </script>
+
+
+</body>
+</html>

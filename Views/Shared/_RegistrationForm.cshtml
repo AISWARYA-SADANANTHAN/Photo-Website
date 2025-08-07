@@ -1,0 +1,168 @@
+﻿
+
+<style>
+    .first{
+        margin-left:75px;
+    }
+    .second{
+        margin-left:67px;
+    }
+   .lbl{
+       color:white;
+       margin-left:40px;
+   }
+    .inp{
+        margin-left:80px;
+    }
+    .lbl1{
+        margin-left: 50px;
+        color:white;
+    }
+    .inp1{
+        margin-left: 85px;
+    }
+
+
+
+
+    .cu_em {
+        margin-left: 46px;
+    }
+
+    .cu1 {
+        margin-left: 80px;
+    }
+
+    .lbl3{
+        color: white;
+        margin-left: 40px;
+    }
+
+    .lbl4 {
+        margin-left: 50px;
+        color: white;
+    }
+    
+</style>
+<button type="button" class="btn btn-secondary" style="padding: 7px 38px; " onclick="showAdminLogin()">Admin</button>
+<button type="button" class="btn btn-secondary" onclick="showCustomerReg()">Customer_Reg</button>
+<button type="button" class="btn btn-secondary" onclick="showCustomerLogin()">Customer_Login</button>
+<br /><br /><br />
+
+<div id="adminLogin" style="display:none;">
+    <h2 style="color:white">ADMIN LOGIN </h2> <br />
+    <form asp-action="Login" method="post">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+       
+        <div class="form-group">
+
+            <label for="email" style="color:white"><b>Email  Id</b></label>
+            <input type="text" placeholder="Enter email" name="Email" required class="input-spacing1  first" >
+            <br /><br />
+            <label for="password" style="color:white"><b> Password</b></label> 
+            <input type="password" placeholder="Enter password" name="Password" required class="input-spacing1 second">
+            <br /><br />
+            <button type="submit" class="btn btn-success">Login</button>
+
+
+        </div>
+    </form>
+  
+</div>
+
+
+
+
+<div id="customerReg" style="display:none;">
+    <h2 style="color:white">CUSTOMER REGISTRATION </h2><br />
+    <form asp-action="RegistrationForm" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            
+            <label for="name" class="lbl"><b>Enter Name</b></label>
+            <input type="text" placeholder="Enter Name" id="name" name="Name" required class="input-spacing1 inp">
+
+
+
+
+            <label for="Email" class="lbl"><b>Enter Email</b></label>
+            <input type="text" placeholder="Enter Email" id="email"name="Email" required class="input-spacing1 inp">
+
+
+
+
+            <label for="password" class="lbl1"><b> Password</b></label>
+            <input type="password" placeholder="Enter password" id="pass" name="Password" required class="input-spacing1 inp1">
+            <br /><br />
+
+            <button type="submit" class="btn btn-success" onclick="showAlert();">Register</button>
+        </div>
+    </form>   
+</div>
+
+<script>
+    function showAlert() {
+        var name = document.getElementById('name').value.trim(); // Get the value and trim whitespace
+        var email = document.getElementById('email').value.trim(); // Get the value and trim whitespace
+        var pass = document.getElementById('pass').value.trim(); // Get the value and trim whitespace
+
+        // Check if any of the fields are empty
+        if (name === '' || email === '' || pass === '') {
+            alert('Please fill in all fields.'); // Show alert if any field is empty
+            return false; // Prevent further action
+        } else {
+            alert("Successfully registered!"); // Show success message
+        }
+        return true; // Indicate successful validation
+    }
+</script>
+
+
+<div id="customerLogin" style="display:none;">
+    <h2 style="color:white">CUSTOMER LOGIN</h2><br />
+    <form asp-action="Cust_Login" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+
+            <label for="Email" class="lbl3"><b>Customer Email</b></label>
+            <input type="text" placeholder="Enter Email" name="Email" required class="input-spacing1  cu_em">
+            <br /><br />
+            <label for="password" class="lbl4"><b>Password</b></label>
+            <input type="password" placeholder="Enter password" name="Password" required class="input-spacing1  cu1">
+            <br /><br />
+            <button type="submit" class="btn btn-success">Login</button>
+        </div>
+    </form>
+    
+</div>
+
+
+
+
+<partial name="_ValidationScriptsPartial" />
+
+<script>
+    function showAdminLogin() {
+        document.getElementById('adminLogin').style.display = 'block';
+        document.getElementById('customerReg').style.display = 'none';
+        document.getElementById('customerLogin').style.display = 'none';
+    }
+
+    function showCustomerReg() {
+        document.getElementById('customerReg').style.display = 'block';
+        document.getElementById('adminLogin').style.display = 'none';
+        document.getElementById('customerLogin').style.display = 'none';
+    }
+
+
+    function showCustomerLogin() {
+        document.getElementById('customerLogin').style.display = 'block';
+        document.getElementById('adminLogin').style.display = 'none';
+        document.getElementById('customerReg').style.display = 'none';
+
+    }
+</script>
+
+
+

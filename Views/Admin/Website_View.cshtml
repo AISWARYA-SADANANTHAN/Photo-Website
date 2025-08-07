@@ -1,0 +1,365 @@
+﻿
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/PhotographyWebsite.styles.css" asp-append-version="true" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="styles.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<form>
+
+
+        <style>
+            .item1 {
+                grid-area: header;             
+                background-repeat: no-repeat; 
+                background-position: center;
+            }
+
+            .item2 {
+                grid-area: menu;
+                margin-left: 1px;
+              
+               
+            }
+
+            .item3 {
+                grid-area: main;
+               background-repeat: no-repeat;
+               background-position: center;
+
+            }
+
+            .item4 {
+                grid-area: right;
+                grid-template-columns: 10px 50px 100px; 
+                grid-gap: 1px;
+                font-family:'Times New Roman', Times, serif;
+                font-size:15px;
+            }
+
+            .item5 {
+                grid-area: footer;
+                font-size:16px;
+            font-family: 'Times New Roman', Times, serif;
+                
+            }
+
+            .grid-container {
+                display: grid;
+                grid-template-areas:
+                    'header header header header header header'
+                    'menu main main main right right'
+                    'menu footer footer footer footer footer';
+                gap: 10px;
+                background-color: #2196F3;
+                padding: 10px;
+            }
+
+                .grid-container  {
+                    background-color: rgba(255, 255, 255, 0.8);
+                    text-align: center;
+                    padding: 20px 0;
+                    font-size: 30px;
+                }
+                 
+
+            .image-container{
+                              
+            }
+            img{
+                width: 100%;
+            }
+            
+
+*{
+  margin:0;
+  padding:0;
+  font-family: 'Dosis', sans-serif;
+}
+
+aside{
+  width: 100px;
+  height: 75vh;
+  background: rgb(200,16,46)
+}
+aside nav{
+  font-size: 10px;
+  text-align:left;
+  padding:10px 10px 10px 10px 
+}
+aside nav ul{
+  list-style:none;
+}
+aside nav ul a li {
+  color: #fff;
+  position:relative;
+  width:calc(100% - 1em);
+  padding:1em 0 1em 1em;
+}
+aside nav ul a li:hover {
+  color: #000;
+  background: rgb(255 255 255);
+  border-radius: 0.5em 0em 0em 0.5em;
+}
+aside nav ul a li:hover::before {
+    content: '';
+    position: absolute;
+    background: orange;
+    right: 0px;
+    top: -1em;
+    border-radius: 0em 0em 0.5em 0em;
+    border: rgb(200,16,46) 0.5em solid;
+    box-shadow: 0.5em 0.5em 0 0 rgb(255 255 255);
+}
+aside nav ul a li:hover::after {
+    content: '';
+    position: absolute;
+    background: orange;
+    right: 0px;
+    bottom: -1em;
+    border-radius: 0em 0.5em 0.5em 0em;
+    border: rgb(200,16,46) 0.5em solid;
+    box-shadow: 0.5em -0.5em 0 0 rgb(255 255 255);
+}
+aside nav ul a{
+  color: inherit;
+  text-decoration: none;
+}
+.section{
+    display:flex;
+    justify-content:space-evenly;
+}
+
+        .maindiv{
+            display:flex;
+            justify-content:space-evenly;
+        }
+
+
+</style>
+
+
+@if(ViewBag.Message != null){
+    <div style="color:red">@ViewBag.Message</div>
+}
+
+   <div class="grid-container">
+   <div class="item1">
+            <nav class="navbar navbar-light bg-light">
+                <button class="btn btn-outline-success" onclick="location.href='@Url.Action("Order_photo","Admin")'" id="openRegistrationModal" type="button">Booking</button>
+
+               @*  <div class="modal fade" id="registrationModal" tabindex="-1" role="dialog" aria-labelledby="registrationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="registrationModalLabel"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white; opacity:100%;" onclick="location.href='@Url.Action("Index", "Admin")'">
+                                    &times; <!-- This represents the close icon -->
+                                </button>
+                            </div>
+                            <div class="modal-body" style="border:initial;">
+                                @Html.Partial("_RegistrationForm")
+                            </div>
+                        </div>
+                    </div>
+                </div> *@
+               
+
+                 <button class="btn btn-sm btn-outline-secondary" type="button">Smaller button</button>
+
+            </nav>
+
+  </div>
+      
+            <div class="item3">
+                <div class="image-container1">
+                    <img src="../Image/pic2.webp" style="width:950px;height:500px;">
+                </div>
+            </div>
+            <div class="item4"  >
+                <br />
+              “Taking pictures is savoring life intensely, every hundredth of a second.” “It's more important for a photographer to have very good shoes, than to have a very good camera.”
+
+                <div class="image-container9">
+                    <img src="../Image/pic4.jpg" style="width:200px;height:200px;">
+                </div>
+              <br>  “Once you learn to care, you can record images with your mind or on film. There is no difference between the two.”
+               
+          </div>
+        <div class="item5" style="text-align: justify;">
+           
+            <p style="width:1200px; margin:auto;">
+                Photographs play an important role in everyone's lives because they allow us to keep in touch with the past and bring back fond memories of special times, people, and places. They can provide light on who we are and how we got here. Unfortunately, this is the case for many people who spent their formative years in a children's home or other institution; for these people, images take on an even greater significance since they lack access to the kinds of photographs that the rest of us take for granted.
+            That thought has probably occurred to you at some point in your life. When we could be snuggled up in bed, warm and cosy, there's no good reason to wake up at 4 a.m. to capture pictures of the sunrise. We could be watching TV or hanging out with our friends, but instead we spend countless hours perfecting our compositions and mastering the principles of photography.
+            </p>
+                       </div>
+        </div>
+    <div><center> <b><h2>Different Types of Photography</h2></b></center></div>
+    <div class="section">
+  <div class="image-container9">
+  <img src="../Image/land1.jpg" style="width:400px;height:400px;">
+    </div>
+      
+        <p style="width:300px; padding-top:50px;">
+            <b>Landscape photography</b><br />
+                Landscape photography involves taking pictures of a natural scene. This can be big, grand vistas or smaller, more intimate natural scenes. There are also several sub-genres of landscapes: storm photography, seascapes, urban landscapes, etc.
+            Explore the four things that make a great landscape photograph – Fantastic Light, Strong Composition, Appropriate Sharpness and Optimum Exposure.
+        </p>
+
+       
+  </div><br /><br />
+    <div class="section">
+
+        <p style="width:300px; padding-top:50px;">
+            <b> Wildlife Photography</b><br />
+           Wildlife photography can be intense and require an immense amount of patience. It can range from photos of birds and everyday city-dwelling animals to wild, dangerous, and exotic animals of remote areas.
+           Various animal species can be found anywhere, meaning the opportunities for wildlife photographers are endless.
+        </p>
+
+        <div class="image-container10">
+            <img src="../Image/Wild.jpg" style="width:400px;height:300px;">
+        </div>
+
+    </div> <br /><br />
+    <div class="section">
+        <div class="image-container10">
+            <img src="../Image/micro.jpg" style="width:400px;height:300px;">
+        </div>
+
+        <p style="width:300px; padding-top:50px;">
+            <b> Macro Photography </b><br />
+            Macro photography is capturing incredibly small creatures and objects. It is most commonly used for photographing bugs and flowers, but it can be used to capture many other things as well. Small objects and details can often be overlooked, but macro photography brings attention to them and offers a new perspective.
+        </p>
+
+
+    </div> <br /><br />
+    <!-- Band Members -->
+    <div class="maindiv">     
+   <div>
+
+        <article class="w3-third">
+            <p><b>Still Life Photography</b></p>
+                <div class="image-container10">
+                    <img src="../Image/Still.jpg" style="width:150px;height:100px;">
+                </div>
+                <p style="width:200px; justify-content:space-evenly;">Still life photography is photographing objects deliberately arranged in a manufactured scene. This can include ring photos at a wedding, flat lays, or aesthetically pleasing desk arrangements.</p>
+        </article>
+        </div>
+
+        <div>
+        <article class="w3-third">
+                <p><b>Food Photography</b></p>
+                <div class="image-container10">
+                    <img src="../Image/Food.jpg" style="width:150px;height:100px;">
+                </div>
+                <p style="width:200px; justify-content:space-evenly;">Another sub-genre of commercial photography is food photography. Food photographers photograph food for restaurants, bakeries, chefs, food trucks, etc., to be used in advertisements, marketing, menus, cookbooks, and social media. </p>
+        </article>
+        </div>
+        <div>
+        <article class="w3-third">
+                <p><b>Event Photography</b></p>
+                <div class="image-container10">
+                    <img src="../Image/Event.jpg" style="width:150px;height:100px;">
+                </div>
+                <p style="width:200px; justify-content:space-evenly;">Event photography covers so many different types of events. Other than weddings, there are parties, concerts, festivals, parades, corporate events, and many other celebrations.</p>
+        </article>
+        </div>
+
+        <div>
+            <article class="w3-third">
+                <p><b>Travel Photography</b></p>
+                <div class="image-container10">
+                    <img src="../Image/Travel.jpg" style="width:150px;height:100px;">
+                </div>
+                <p style="width:200px; justify-content:space-evenly;">Travel photography can be portraiture, landscape, cityscape, architectural, street, or even documentary photography. Many people like to document their trips, while some make a career out of photographing their travels or documenting different cultures.</p>
+            </article>
+        </div>
+
+   </div><br /><br />
+    <!-- Footer -->
+     <div class="about_div" style="background-color:antiquewhite">
+        <footer class="w3-container w3-padding-64 w3-center w3-black w3-xlarge">
+            <h2><center>About</center></h2>
+            <p style="width:800px; margin:auto;"><i>
+If you’re looking for a photography studio hire, Cineview Studios is the perfect option for all your photography studio hire needs. Our studio is available for hire for all types of photoshoots, from small to large.
+Contact us today to schedule your next shoot and experience our exceptional service and high-quality results.
+                </i>
+            </p>
+            @*  <p class="w3-medium">
+            Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
+        </p> *@
+
+           <div><center>
+                <article class="w3-third">
+                   
+                    <div class="image-container10">
+                        <img src="../Image/3.jpg" style="width:250px;height:200px;">
+                            <img src="../Image/2.jpg" style="width:250px;height:200px;">
+                            <img src="../Image/1.jpg" style="width:250px;height:200px;">
+                    </div>
+
+                       
+                      
+                    Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
+                </article>
+                </center>
+            </div>
+    </footer>
+    </div>
+    <script>
+        // Automatic Slideshow - change image every 3 seconds
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) { myIndex = 1 }
+            x[myIndex - 1].style.display = "block";
+            setTimeout(carousel, 3000);
+        }
+    </script>
+
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#openRegistrationModal").click(function () {
+                $("#registrationModal").modal('show');
+            });
+        });
+    </script>
+
+
+</form>
+
+

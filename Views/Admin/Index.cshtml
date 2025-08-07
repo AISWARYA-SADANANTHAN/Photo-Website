@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@*
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+</div> *@
+
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-image: url('image/Quotefancy-16703-3840x2160.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .button-container {
+            background-color: transparent;
+            margin-right: 4px;
+            margin-top: 540px;
+        }
+
+        h1 {
+            font-family: 'Calibri', sans-serif; /* Font size */
+            /*             font-weight: bold;
+         */ color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+        .btnn{
+            margin-top:300px;
+            padding: 12px 40px;
+            font-size: 16px;
+        }
+
+        .modal-header{
+             background-image:url('Image/Screenshot (394).png');
+            background-repeat:no-repeat;
+            background-position:center;
+            background-size:cover;
+            border-block-width:inherit;
+        }
+
+        .modal-body{
+            background-image:url('Image/Screenshot (394).png');
+            background-repeat:no-repeat;
+            background-position:center;
+            background-size:cover;
+
+        }
+      
+    </style>
+</head>
+<body>
+     <div class="container text-center mt-5" >
+
+       
+
+
+        <button id="openRegistrationModal" class="btn btn-success btnn">Login</button>
+
+    <!-- Include jQuery and Bootstrap (or your preferred modal library) -->
+    <!-- Modal -->
+    <div class="modal fade" id="registrationModal" tabindex="-1" role="dialog" aria-labelledby="registrationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header" >
+                    <h5 class="modal-title" id="registrationModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white; opacity:100%;" onclick="location.href='@Url.Action("Index", "Admin")'">
+                            &times; <!-- This represents the close icon -->
+                        </button>
+                </div>
+                    <div class="modal-body"  style="border:initial;">
+                    @Html.Partial("_RegistrationForm")
+                </div>
+            </div>
+        </div>
+    </div>
+        @if (TempData["Message"] != null)
+        {
+            <div style="color:red">@TempData["Message"] </div>
+        }
+    <script>
+        $(document).ready(function () {
+            $("#openRegistrationModal").click(function () {
+                $("#registrationModal").modal('show');
+            });
+        });
+    </script>
+
+        <div class="container text-center mt-5"></div>
+
+          
+</body>
+</html>
